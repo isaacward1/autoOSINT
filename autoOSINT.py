@@ -16,7 +16,8 @@ IP_links = [
 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
 'https://otx.alienvault.com/indicator/ip/{ioc}',
 'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
-'https://www.google.com/search?q="{ioc}"'
+'https://www.google.com/search?q="{ioc}"',
+'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
 ]
 
 domain_links = [
@@ -28,8 +29,11 @@ domain_links = [
 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
 'https://otx.alienvault.com/indicator/hostname/{ioc}',
 'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
-'https://www.google.com/search?q="{ioc}"'
+'https://www.google.com/search?q="{ioc}"',
+'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
 ]
+
+# 
 
 subs = {
     r'\[.\]':".", 
