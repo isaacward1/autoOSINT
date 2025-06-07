@@ -6,7 +6,7 @@ import os
 import sys
 
 IP_links = [
-'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_ip?form.name={ioc}',
+'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_ip?form.name={ioc}',    # requires login
 'https://www.virustotal.com/gui/ip-address/{ioc}',
 'https://www.abuseipdb.com/check/{ioc}',
 'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
@@ -15,24 +15,26 @@ IP_links = [
 'https://viz.greynoise.io/ip/{ioc}',
 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
 'https://otx.alienvault.com/indicator/ip/{ioc}',
-#'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
-#r'https://www.google.com/search?q="{ioc}"',
+'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
+'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
 'https://tria.ge/s?q={ioc}',
-r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
+#r'https://www.google.com/search?q="{ioc}"+site:any.run',
+r'https://www.google.com/search?q="{ioc}"'
 ]
 
 domain_links = [
-'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_domain?form.name={ioc}',
+'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_domain?form.name={ioc}',    # requires login
 'https://www.virustotal.com/gui/domain/{ioc}',
 'https://urlscan.io/domain/{ioc}',
 'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
 'https://www.securefeed.com/Content/WebLookup?host={ioc}',
 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
 'https://otx.alienvault.com/indicator/hostname/{ioc}',
-#'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
-#r'https://www.google.com/search?q="{ioc}"',
+'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
+'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
 'https://tria.ge/s?q={ioc}',
-r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
+#r'https://www.google.com/search?q="{ioc}"+site:any.run',
+r'https://www.google.com/search?q="{ioc}"'
 ]
 
 subs = {
