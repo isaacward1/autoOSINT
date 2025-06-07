@@ -16,7 +16,7 @@ IP_links = [
 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
 'https://otx.alienvault.com/indicator/ip/{ioc}',
 'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
-'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
+'https://www.joesandbox.com/analysis/search?q={ioc}',
 'https://tria.ge/s?q={ioc}',
 #r'https://www.google.com/search?q="{ioc}"+site:any.run',
 r'https://www.google.com/search?q="{ioc}"'
@@ -31,7 +31,7 @@ domain_links = [
 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
 'https://otx.alienvault.com/indicator/hostname/{ioc}',
 'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
-'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
+'https://www.joesandbox.com/analysis/search?q={ioc}',
 'https://tria.ge/s?q={ioc}',
 #r'https://www.google.com/search?q="{ioc}"+site:any.run',
 r'https://www.google.com/search?q="{ioc}"'
