@@ -17,9 +17,9 @@ IP_links = [
 'https://otx.alienvault.com/indicator/ip/{ioc}',
 'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
 'https://www.joesandbox.com/analysis/search?q={ioc}',
-'https://tria.ge/s?q={ioc}',
-#r'https://www.google.com/search?q="{ioc}"+site:any.run',
-r'https://www.google.com/search?q="{ioc}"'
+#'https://tria.ge/s?q={ioc}',
+r'https://www.google.com/search?q="{ioc}"+site:any.run',
+#r'https://www.google.com/search?q="{ioc}"'
 ]
 
 domain_links = [
@@ -32,9 +32,9 @@ domain_links = [
 'https://otx.alienvault.com/indicator/hostname/{ioc}',
 'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
 'https://www.joesandbox.com/analysis/search?q={ioc}',
-'https://tria.ge/s?q={ioc}',
-#r'https://www.google.com/search?q="{ioc}"+site:any.run',
-r'https://www.google.com/search?q="{ioc}"'
+#'https://tria.ge/s?q={ioc}',
+r'https://www.google.com/search?q="{ioc}"+site:any.run',
+#r'https://www.google.com/search?q="{ioc}"'
 ]
 
 subs = {
