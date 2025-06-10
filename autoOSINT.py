@@ -64,16 +64,25 @@ def search_IOC():
     try:
         # if IP
         if re.match(ipv4_pattern, ioc) is not None:
+            first = True
             for link in IP_links:
                 new_link = re.sub(r"\{ioc\}", ioc, link)
-                webbrowser.open_new_tab(new_link)
+                if first:
+                    webbrowser.open_new(new_link)
+                    first = False
+                else:
+                    webbrowser.open_new_tab(new_link)
                 time.sleep(0.5)
 
         # if domain
         elif re.match(domain_pattern, ioc) is not None:
             for link in domain_links:
                 new_link = re.sub(r"\{ioc\}", ioc, link)
-                webbrowser.open_new_tab(new_link)
+                if first:
+                    webbrowser.open_new(new_link)
+                    first = False
+                else:
+                    webbrowser.open_new_tab(new_link)
                 time.sleep(0.5)
 
         # if ioc match no pattern
