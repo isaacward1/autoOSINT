@@ -76,6 +76,7 @@ def search_IOC():
 
         # if domain
         elif re.match(domain_pattern, ioc) is not None:
+            first = True
             for link in domain_links:
                 new_link = re.sub(r"\{ioc\}", ioc, link)
                 if first:
