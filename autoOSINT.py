@@ -18,11 +18,11 @@ IP_links = [
     'https://otx.alienvault.com/indicator/ip/{ioc}',
     #'https://threatbook.io/ip/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
-    #'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
-    #'https://www.joesandbox.com/analysis/search?q={ioc}',
+    'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
+    'https://www.joesandbox.com/analysis/search?q={ioc}',
     #'https://tria.ge/s?q={ioc}',
-    r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
-    #r'https://www.google.com/search?q="{ioc}"'
+    #r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
+    r'https://www.google.com/search?q="{ioc}"'
 ]
 
 domain_links = [
@@ -35,11 +35,11 @@ domain_links = [
     'https://otx.alienvault.com/indicator/hostname/{ioc}',
     #'https://threatbook.io/domain/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
-    #'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
-    #'https://www.joesandbox.com/analysis/search?q={ioc}',
+    'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
+    'https://www.joesandbox.com/analysis/search?q={ioc}',
     #'https://tria.ge/s?q={ioc}',
-    r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
-    #r'https://www.google.com/search?q="{ioc}"'
+    #r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
+    r'https://www.google.com/search?q="{ioc}"'
 ]
 
 subs = {
