@@ -21,7 +21,7 @@ IP_links = [
     #'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     #'https://www.joesandbox.com/analysis/search?q={ioc}',
     #'https://tria.ge/s?q={ioc}',
-    r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com',
+    r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
     #r'https://www.google.com/search?q="{ioc}"'
 ]
 
@@ -38,7 +38,7 @@ domain_links = [
     #'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     #'https://www.joesandbox.com/analysis/search?q={ioc}',
     #'https://tria.ge/s?q={ioc}',
-    r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com',
+    r'https://www.google.com/search?q="{ioc}"+site:any.run+OR+site:www.joesandbox.com+OR+site:www.hybrid-analysis.com'
     #r'https://www.google.com/search?q="{ioc}"'
 ]
 
