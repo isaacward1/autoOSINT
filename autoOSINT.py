@@ -13,13 +13,14 @@ IP_links = [
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
     'https://urlscan.io/ip/{ioc}',
     'https://www.securefeed.com/Content/WebLookup?host={ioc}',
-    'https://viz.greynoise.io/ip/{ioc}',
+    #'https://viz.greynoise.io/ip/{ioc}',
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'https://otx.alienvault.com/indicator/ip/{ioc}',
     #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
-    #'https://threatbook.io/ip/{ioc}',
+    #'https://threatbook.io/research/{ioc}',    # requires login
     #'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
-    #'https://opentip.kaspersky.com/{ioc}/?tab=lookup',
+    'https://www.shodan.io/host/{ioc}',
+    #'https://search.censys.io/hosts/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     'https://www.joesandbox.com/analysis/search?q={ioc}',
@@ -37,9 +38,9 @@ domain_links = [
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'https://otx.alienvault.com/indicator/hostname/{ioc}',
     #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
-    #'https://threatbook.io/domain/{ioc}',
+    #'https://threatbook.io/research/{ioc}',    # requires login
     #'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
-    #'https://opentip.kaspersky.com/{ioc}/?tab=lookup',
+    'https://www.shodan.io/domain/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     'https://www.joesandbox.com/analysis/search?q={ioc}',
@@ -49,9 +50,9 @@ domain_links = [
 ]
 
 url_links = [
-'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_url?form.name={ioc}',
-'https://www.virustotal.com/gui/url/{ioc}'
-#'https://exchange.xforce.ibmcloud.com/url/{ioc}'
+    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_url?form.name={ioc}',
+    'https://www.virustotal.com/gui/url/{ioc}'
+    #'https://exchange.xforce.ibmcloud.com/url/{ioc}'
 ]
 
 subs = {
