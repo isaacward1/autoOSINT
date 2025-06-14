@@ -42,9 +42,17 @@ domain_links = [
     r'https://www.google.com/search?q="{ioc}"'
 ]
 
+url_links = [
+'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_url?form.name={ioc}',
+'https://www.virustotal.com/gui/url/{ioc}',
+'https://www.google.com/search?q="{ioc}"'
+]
+
 subs = {
     r'\[.\]':".", 
     r' .':".",
+    r'hxxp':"http",
+    r'hxxps':"https"
 }
 
 def search_IOC():
@@ -60,6 +68,7 @@ def search_IOC():
     # determine if entered ioc is an IP or domain
     ipv4_pattern = r"([0-9]{1,3}\.){3}[0-9]{1,3}"
     domain_pattern = r"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    url_pattern = r"^https?:\/\/.+$"
 
     try:
         # if IP
@@ -72,7 +81,7 @@ def search_IOC():
                     first = False
                 else:
                     webbrowser.open_new_tab(new_link)
-                time.sleep(0.5)
+                time.sleep(0.25)
 
         # if domain
         elif re.match(domain_pattern, ioc) is not None:
@@ -84,18 +93,38 @@ def search_IOC():
                     first = False
                 else:
                     webbrowser.open_new_tab(new_link)
-                time.sleep(0.5)
+                time.sleep(0.25)
+
+        # if url
+        elif re.match(url_pattern, ioc) is not None:
+            first = True
+            for link in url_links:
+                new_link = re.sub(r"\{ioc\}", ioc, link)
+                if first:
+                    if "virustotal" in link:
+                        new_link = re.sub(r"\{ioc\}", ioc_hash, link)
+                    else:
+                        new_link = re.sub(r"\{ioc\}", ioc, link)
+                    webbrowser.open_new(new_link)
+                    first = False
+                else:
+                    if "virustotal" in link:
+                        new_link = re.sub(r"\{ioc\}", ioc_hash, link)
+                    else:
+                        new_link = re.sub(r"\{ioc\}", ioc, link)
+                    webbrowser.open_new_tab(new_link)
+                time.sleep(0.25)
 
         # if ioc match no pattern
         else:
             print("* Invalid format: enter IP/domain like '52.108.248[.]20' or 'www.google.com')")
         
     except Exception as bruh:
-        print(f"dawg u ran into {bruh}")
+        print(f"error u nerd: {bruh}")
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("enter only one argument u nerd!")
+        print("one thing at a time u nerd! enclose args containing spaces in double quotes")
         sys.exit(1)
     else:
         search_IOC()
