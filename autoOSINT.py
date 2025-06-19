@@ -11,7 +11,7 @@ IP_links = [
     'https://www.virustotal.com/gui/ip-address/{ioc}',
     'https://www.abuseipdb.com/check/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
-    'https://urlscan.io/ip/{ioc}',
+    #'https://urlscan.io/ip/{ioc}',
     'https://www.securefeed.com/Content/WebLookup?host={ioc}',
     #'https://viz.greynoise.io/ip/{ioc}',
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
@@ -33,7 +33,8 @@ domain_links = [
     'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_domain?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/domain/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
-    'https://urlscan.io/domain/{ioc}',
+    'https://urlscan.io/search/#page.domain%3A{ioc}',
+    #'https://urlscan.io/domain/{ioc}',
     'https://www.securefeed.com/Content/WebLookup?host={ioc}',
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'https://otx.alienvault.com/indicator/hostname/{ioc}',
