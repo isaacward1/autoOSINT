@@ -11,19 +11,20 @@ IP_links = [
     'https://www.virustotal.com/gui/ip-address/{ioc}',
     'https://www.abuseipdb.com/check/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
+    #'https://urlscan.io/search/#page.ip%3A{ioc}',
     #'https://urlscan.io/ip/{ioc}',
     'https://www.securefeed.com/Content/WebLookup?host={ioc}',
     #'https://viz.greynoise.io/ip/{ioc}',
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'https://otx.alienvault.com/indicator/ip/{ioc}',
-    #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
+    #'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
     #'https://threatbook.io/research/{ioc}',    # requires login
     #'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
-    'https://www.shodan.io/host/{ioc}',
-    #'https://search.censys.io/hosts/{ioc}',
+    #'https://www.shodan.io/host/{ioc}',
+    'https://search.censys.io/hosts/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
-    'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
+    #'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
     #'https://tria.ge/s?q={ioc}',
     r'https://www.google.com/search?q="{ioc}"+site:any.run'
     #r'https://www.google.com/search?q="{ioc}"'
@@ -44,7 +45,7 @@ domain_links = [
     'https://www.shodan.io/domain/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
-    'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
+    #'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
     #'https://tria.ge/s?q={ioc}',
     r'https://www.google.com/search?q="{ioc}"+site:any.run'
     #r'https://www.google.com/search?q="{ioc}"'
@@ -69,7 +70,7 @@ def search_IOC():
 
     os.system("cls||clear")
 
-    # fanging
+    # un-defanging
     for sub in subs.keys():
         ioc = re.sub(sub, subs[sub], ioc)
 
@@ -132,7 +133,7 @@ def search_IOC():
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("one thing at a time u nerd! enclose args containing spaces in double quotes")
+        print("one thing at a time please!\nenclose args containing spaces in double quotes.")
         sys.exit(1)
     else:
         search_IOC()
