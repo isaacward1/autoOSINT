@@ -68,8 +68,6 @@ def search_IOC():
 
     ioc = (sys.argv[1]).strip()
 
-    os.system("cls||clear")
-
     # un-defanging
     for sub in subs.keys():
         ioc = re.sub(sub, subs[sub], ioc)
@@ -132,6 +130,8 @@ def search_IOC():
         print(f"error u nerd: {bruh}")
 
 if __name__ == '__main__':
+    os.system("cls||clear")
+    
     if len(sys.argv) != 2:
         print("one thing at a time please!\nenclose args containing spaces in double quotes.")
         sys.exit(1)
