@@ -54,12 +54,22 @@ domain_links = [
 
 url_links = [
     'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_url?form.name={ioc}',
-    'https://www.virustotal.com/gui/url/{ioc}'
-    #'https://exchange.xforce.ibmcloud.com/url/{ioc}'
+    'https://urlhaus.abuse.ch/browse.php?search={ioc}',
+    'https://www.virustotal.com/gui/url/{ioc}',
+    #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
+    r'https://www.google.com/search?q="{ioc}"'
 ]
 
-SHA256_links = [
-
+hash_links = [
+    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_hash?form.name={ioc}',
+    'https://otx.alienvault.com/indicator/file/{ioc}',
+    'https://tria.ge/s?q={ioc}',
+    'https://www.virustotal.com/gui/file/{ioc}',
+    'https://hybrid-analysis.com/sample/{ioc}',
+    'https://bazaar.abuse.ch/sample/{ioc}',
+    'https://www.joesandbox.com/analysis/search?q={ioc}',
+    'https://opentip.kaspersky.com/{ioc}/results?tab=lookup',
+    r'https://www.google.com/search?q="{ioc}"'
 ]
 
 subs = {
@@ -81,6 +91,7 @@ def search_IOC():
     ipv4_pattern = r"([0-9]{1,3}\.){3}[0-9]{1,3}"
     domain_pattern = r"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     url_pattern = r"^https?:\/\/.+$"
+    hash_pattern r"[a-zA-Z0-9]{64}"
 
     try:
         # if IP
@@ -115,6 +126,10 @@ def search_IOC():
                 if "virustotal" in link:
                     ioc_hash = hashlib.sha256(ioc.encode()).hexdigest()
                     new_link = re.sub(r"\{ioc\}", ioc_hash, link)
+                if "urlhaus" in link:
+                    scheme_pattern = r"(?:^https?:\/\/)(.+)"
+                    ioc2 = re.findall(scheme_pattern, ioc)[0]
+                    new_link = re.sub(r"\{ioc\}", ioc2, link)
                 if first:
                     webbrowser.open_new(new_link)
                     first = False
@@ -122,9 +137,22 @@ def search_IOC():
                     webbrowser.open_new_tab(new_link)
                 time.sleep(0.25)
 
-        # if ioc match no pattern
+
+        # if hash
+        elif re.match(domain_pattern, ioc) is not None:
+            first = True
+            for link in domain_links:
+                new_link = re.sub(r"\{ioc\}", ioc, link)
+                if first:
+                    webbrowser.open_new(new_link)
+                    first = False
+                else:
+                    webbrowser.open_new_tab(new_link)
+                time.sleep(0.25)
+
+        # if input matches doesn't match a pattern
         else:
-            print("* Invalid format: enter IP/domain like '52.108.248[.]20' or 'www.google.com')")
+            print("* Invalid format: Enter an IP, Domain, URL, or sha256 Hash")
         
     except Exception as bruh:
         print(f"error u nerd: {bruh}")
@@ -133,7 +161,7 @@ if __name__ == '__main__':
     os.system("cls||clear")
     
     if len(sys.argv) != 2:
-        print("one thing at a time please!\nenclose args containing spaces in double quotes.")
+        print("* One thing at a time please!\n* enclose args containing spaces in double quotes.")
         sys.exit(1)
     else:
         search_IOC()
