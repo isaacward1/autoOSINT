@@ -1,6 +1,6 @@
 # autoOSINT
 A silly script to save a few seconds during triage.<br> 
-- Opens a bunch of tabs of different OSINT tools in the system's default browser based on a IOC input.<br>
+- Opens a bunch of tabs of different OSINT tools/threat intel feeds in the system's default browser based on a IOC input.<br>
 - Supports IP(v4), Domain, URL, and SHA-256 Hash input.<br>
 
 <br>
