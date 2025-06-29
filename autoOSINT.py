@@ -7,7 +7,7 @@ import sys
 import time
 import hashlib
 
-IP_links = [
+ip_links = [
     'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_ip?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/ip-address/{ioc}',
     'https://www.abuseipdb.com/check/{ioc}',
@@ -97,7 +97,7 @@ def search_IOC():
         # if IP
         if re.match(ipv4_pattern, ioc) is not None:
             first = True
-            for link in IP_links:
+            for link in ip_links:
                 new_link = re.sub(r"\{ioc\}", ioc, link)
                 if first:
                     webbrowser.open_new(new_link)
