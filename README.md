@@ -1,7 +1,8 @@
 # autoOSINT
 A silly script to save a few seconds during triage.<br> 
 - Opens a bunch of tabs of different OSINT tools in the system's default browser based on a IOC input.<br>
-- Supports IP, Domain, URL, and sha256 Hash input.<br> 
+- Supports IP, Domain, URL, and sha256 Hash input.<br>
+- Requirements: [Python 3](https://www.python.org/downloads/)
 
 <br>
 
