@@ -6,7 +6,7 @@ A silly script to save a few seconds during triage.<br>
 <br>
 
 ## Windows
-1) Download <a href="https://github.com/isaacward1/autoOSINT/blob/main/autoOSINT.py" target="_blank">autoOSINT.py</a>
+1) Download [autoOSINT.py](https://github.com/isaacward1/autoOSINT/blob/main/autoOSINT.py)
 3) Make sure .py files are set to open via python interpreter (Settings > File association is set to
 4) `cd` into directory with autoOSINT.py
 5) `.\autoOSINT.py <ioc>`
