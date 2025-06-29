@@ -20,22 +20,22 @@ IP_links = [
     #'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
     #'https://threatbook.io/research/{ioc}',    # requires login
     #'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
-    #'https://www.shodan.io/host/{ioc}',
+    'https://www.shodan.io/host/{ioc}',
     'https://search.censys.io/hosts/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     #'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
     #'https://tria.ge/s?q={ioc}',
-    r'https://www.google.com/search?q="{ioc}"+site:any.run'
-    #r'https://www.google.com/search?q="{ioc}"'
+    #r'https://www.google.com/search?q="{ioc}"+site:any.run'
+    r'https://www.google.com/search?q="{ioc}"'
 ]
 
 domain_links = [
     'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_domain?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/domain/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
-    'https://urlscan.io/search/#page.domain%3A{ioc}',
-    #'https://urlscan.io/domain/{ioc}',
+    #'https://urlscan.io/search/#page.domain%3A{ioc}',
+    'https://urlscan.io/domain/{ioc}',
     'https://www.securefeed.com/Content/WebLookup?host={ioc}',
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'https://otx.alienvault.com/indicator/hostname/{ioc}',
@@ -47,8 +47,8 @@ domain_links = [
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     #'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
     #'https://tria.ge/s?q={ioc}',
-    r'https://www.google.com/search?q="{ioc}"+site:any.run'
-    #r'https://www.google.com/search?q="{ioc}"'
+    #r'https://www.google.com/search?q="{ioc}"+site:any.run'
+    r'https://www.google.com/search?q="{ioc}"'
 ]
 
 url_links = [
