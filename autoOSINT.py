@@ -137,11 +137,10 @@ def search_IOC():
                     webbrowser.open_new_tab(new_link)
                 time.sleep(0.25)
 
-
         # if hash
-        elif re.match(domain_pattern, ioc) is not None:
+        elif re.match(hash_pattern, ioc) is not None:
             first = True
-            for link in domain_links:
+            for link in hash_links:
                 new_link = re.sub(r"\{ioc\}", ioc, link)
                 if first:
                     webbrowser.open_new(new_link)
@@ -152,7 +151,7 @@ def search_IOC():
 
         # if input matches doesn't match a pattern
         else:
-            print("* Invalid format: Enter an IP, Domain, URL, or sha256 Hash")
+            print("* Wrong format: Enter a valid IP, Domain, URL, or sha256 Hash")
         
     except Exception as bruh:
         print(f"error u nerd: {bruh}")
