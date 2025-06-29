@@ -151,7 +151,7 @@ def search_IOC():
 
         # if input matches doesn't match a pattern
         else:
-            print("* Wrong format: Enter a valid IP, Domain, URL, or sha256 Hash")
+            print("* Wrong format: Enter a valid IP, Domain, URL, or SHA-256 Hash")
         
     except Exception as bruh:
         print(f"error u nerd: {bruh}")
