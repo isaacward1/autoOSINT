@@ -5,6 +5,7 @@ import re
 import os
 import sys
 import time
+import hashlib
 
 IP_links = [
     'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_ip?form.name={ioc}',    # requires login
@@ -57,6 +58,10 @@ url_links = [
     #'https://exchange.xforce.ibmcloud.com/url/{ioc}'
 ]
 
+SHA256_links = [
+
+]
+
 subs = {
     r'\[.\]':".", 
     r' .':".",
@@ -107,18 +112,13 @@ def search_IOC():
             first = True
             for link in url_links:
                 new_link = re.sub(r"\{ioc\}", ioc, link)
+                if "virustotal" in link:
+                    ioc_hash = hashlib.sha256(ioc.encode()).hexdigest()
+                    new_link = re.sub(r"\{ioc\}", ioc_hash, link)
                 if first:
-                    if "virustotal" in link:
-                        new_link = re.sub(r"\{ioc\}", ioc_hash, link)
-                    else:
-                        new_link = re.sub(r"\{ioc\}", ioc, link)
                     webbrowser.open_new(new_link)
                     first = False
                 else:
-                    if "virustotal" in link:
-                        new_link = re.sub(r"\{ioc\}", ioc_hash, link)
-                    else:
-                        new_link = re.sub(r"\{ioc\}", ioc, link)
                     webbrowser.open_new_tab(new_link)
                 time.sleep(0.25)
 
