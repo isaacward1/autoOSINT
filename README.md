@@ -24,6 +24,6 @@ A silly script to save a few seconds during triage.<br>
 
 <br>
 
-## Issues
-- Depending on your browser configurations, you may need to open a new window first
-- 
+## Note
+- Open autoOSINT.py in a text editor to uncomment/comment out specific links for each IOC type
+- `webbrowser` will attempt to open a fresh browser window first and then new tabs for subsequent links. However, depending on browser settings, a new window may need to be manually opened and focused before running the tool, to prevent cluttering of an already active window.
