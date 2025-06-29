@@ -91,7 +91,7 @@ def search_IOC():
     ipv4_pattern = r"([0-9]{1,3}\.){3}[0-9]{1,3}"
     domain_pattern = r"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     url_pattern = r"^https?:\/\/.+$"
-    hash_pattern r"[a-zA-Z0-9]{64}"
+    hash_pattern = r"[a-zA-Z0-9]{64}"
 
     try:
         # if IP
