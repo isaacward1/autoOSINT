@@ -54,6 +54,7 @@ domain_links = [
 url_links = [
     'https://urlhaus.abuse.ch/browse.php?search={ioc}',
     'https://www.virustotal.com/gui/url/{ioc}',
+    'https://otx.alienvault.com/indicator/url/{ioc}',
     #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
     r'https://www.google.com/search?q="{ioc}"'
 ]
