@@ -15,6 +15,7 @@ ip_links = [
     #'https://urlscan.io/ip/{ioc}',
     'https://www.securefeed.com/Content/WebLookup?host={ioc}',
     #'https://viz.greynoise.io/ip/{ioc}',
+    #'https://www.netify.ai/resources/ips/{ioc}',
     'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'https://otx.alienvault.com/indicator/ip/{ioc}',
     #'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
