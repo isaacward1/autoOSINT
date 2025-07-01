@@ -8,7 +8,6 @@ import time
 import hashlib
 
 ip_links = [
-    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_ip?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/ip-address/{ioc}',
     'https://www.abuseipdb.com/check/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
@@ -33,7 +32,6 @@ ip_links = [
 ]
 
 domain_links = [
-    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_domain?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/domain/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
     #'https://urlscan.io/search/#page.domain%3A{ioc}',
@@ -54,7 +52,6 @@ domain_links = [
 ]
 
 url_links = [
-    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_url?form.name={ioc}',
     'https://urlhaus.abuse.ch/browse.php?search={ioc}',
     'https://www.virustotal.com/gui/url/{ioc}',
     'https://otx.alienvault.com/indicator/url/{ioc}',
@@ -63,7 +60,6 @@ url_links = [
 ]
 
 hash_links = [
-    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_hash?form.name={ioc}',
     'https://otx.alienvault.com/indicator/file/{ioc}',
     'https://tria.ge/s?q={ioc}',
     'https://www.virustotal.com/gui/file/{ioc}',
