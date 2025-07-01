@@ -8,6 +8,7 @@ import time
 import hashlib
 
 ip_links = [
+    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_ip?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/ip-address/{ioc}',
     'https://www.abuseipdb.com/check/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
@@ -21,7 +22,7 @@ ip_links = [
     #'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
     #'https://threatbook.io/research/{ioc}',    # requires login
     #'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
-    'https://www.shodan.io/host/{ioc}',
+    #'https://www.shodan.io/host/{ioc}',
     'https://search.censys.io/hosts/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
@@ -32,6 +33,7 @@ ip_links = [
 ]
 
 domain_links = [
+    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_domain?form.name={ioc}',    # requires login
     'https://www.virustotal.com/gui/domain/{ioc}',
     'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
     #'https://urlscan.io/search/#page.domain%3A{ioc}',
@@ -42,7 +44,7 @@ domain_links = [
     #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
     #'https://threatbook.io/research/{ioc}',    # requires login
     #'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
-    'https://www.shodan.io/domain/{ioc}',
+    #'https://www.shodan.io/domain/{ioc}',
     'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'https://www.hybrid-analysis.com/search?query={ioc}',     # requires login
     #'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
@@ -52,14 +54,16 @@ domain_links = [
 ]
 
 url_links = [
+    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_url?form.name={ioc}',
     'https://urlhaus.abuse.ch/browse.php?search={ioc}',
     'https://www.virustotal.com/gui/url/{ioc}',
     'https://otx.alienvault.com/indicator/url/{ioc}',
-    #'https://exchange.xforce.ibmcloud.com/url/{ioc}',
+    'https://exchange.xforce.ibmcloud.com/url/{ioc}',
     r'https://www.google.com/search?q="{ioc}"'
 ]
 
 hash_links = [
+    'https://cyberfl.splunkcloud.com/en-US/app/TA-recordedfuture/rfes_enrich_hash?form.name={ioc}',
     'https://otx.alienvault.com/indicator/file/{ioc}',
     'https://tria.ge/s?q={ioc}',
     'https://www.virustotal.com/gui/file/{ioc}',
@@ -71,7 +75,7 @@ hash_links = [
 ]
 
 subs = {
-    r'\[.\]':".",
+    r'\[.\]':".", 
     r' .':".",
     r'hxxp':"http",
     r'hxxps':"https"
@@ -152,13 +156,13 @@ def search_IOC():
             print("* Wrong format: Enter a valid IP, Domain, URL, or SHA-256 Hash")
         
     except Exception as bruh:
-        print(f"error u nerd: {bruh}")
+        print(f"Error u nerd: {bruh}")
 
 if __name__ == '__main__':
     os.system("cls||clear")
     
     if len(sys.argv) != 2:
-        print("* One thing at a time please!\n* enclose args containing spaces in double quotes.")
+        print("* One thing at a time please!\n* Enclose args containing spaces in double quotes.")
         sys.exit(1)
     else:
         search_IOC()
