@@ -67,6 +67,9 @@ hash_links = [
     'https://bazaar.abuse.ch/sample/{ioc}',
     'https://www.joesandbox.com/analysis/search?q={ioc}',
     'https://opentip.kaspersky.com/{ioc}/results?tab=lookup',
+    #'https://threatfeed.vmray.com/?textSearch={ioc}',
+    #'https://polyswarm.network/scan/results/file/{ioc}',
+    #'https://malprob.io/report/{ioc}',
     r'https://www.google.com/search?q="{ioc}"'
 ]
 
