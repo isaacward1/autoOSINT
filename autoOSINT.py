@@ -211,12 +211,10 @@ def search_ioc(ioc, ioc_type, option=None):
                     else:
                         new_link = link.replace("{ioc}", ioc)
                     if first:
-                        #webbrowser.open_new(new_link)
-                        print(new_link)
+                        webbrowser.open_new(new_link)
                         first = False
                     else:
-                        #webbrowser.open_new_tab(new_link)
-                        print(new_link)
+                        webbrowser.open_new_tab(new_link)
                     time.sleep(0.25)
 
             else:
