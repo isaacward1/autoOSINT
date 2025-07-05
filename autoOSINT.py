@@ -74,10 +74,10 @@ hash_links = {
 }
 
 subs = {
-    r'\[.\]':".", 
-    r' .':".",
-    r'hxxp':"http",
-    r'hxxps':"https"
+    '[.]':'.', 
+    ' .':'.',
+    'hxxp':'http',
+    'hxxps':'https'
 }
 
 regex_ioc_patterns = {
@@ -120,7 +120,7 @@ Examples:
 
 def check_valid_ioc(ioc):
     for sub in subs.keys():
-        ioc.replace(sub, subs[sub])
+        ioc = ioc.replace(sub, subs[sub])
 
     for ioc_type in regex_ioc_patterns.keys():
         if re.fullmatch(regex_ioc_patterns[ioc_type], ioc):
