@@ -10,7 +10,7 @@ A silly script to save a few seconds during triage.<br>
 2) Make sure '.py' files are set to open via python interpreter (not an IDE): <br>
    (Settings > Apps > Default apps > Choose defaults by file type > Default for '.py' files: Python)
 3) `cd` into directory with autoOSINT.py
-4) `.\autoOSINT.py <ioc>`
+4) `.\autoOSINT.py <IOC>` or `.\autoOSINT.py -h` for usage
 
 
 <br>
@@ -21,7 +21,7 @@ A silly script to save a few seconds during triage.<br>
 3) `chmod +x autoOSINT.py`
 4) Ensure '/usr/local/bin' is in $PATH environment variable: `echo $PATH | tr ':' '\n'`
 5) `sudo mv autoOSINT.py /usr/local/bin/autoOSINT.py`
-6) `autoOSINT <ioc>`
+6) `autoOSINT.py <IOC>` or `autoOSINT.py -h` for usage
 
 <br>
 
