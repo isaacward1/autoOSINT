@@ -76,6 +76,7 @@ hash_links = {
 subs = {
     '[.]':'.', 
     ' .':'.',
+    '[:]':':',
     'hxxp':'http',
     'hxxps':'https'
 }
