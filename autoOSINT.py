@@ -63,7 +63,7 @@ hash_links = {
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/file/{ioc}',
     'Recorded Future Triage': 'https://tria.ge/s?q={ioc}',
     'VirusTotal': 'https://www.virustotal.com/gui/file/{ioc}',
-    'Hybrid Analysis': 'https://hybrid-analysis.com/sample/{ioc}',
+    'Hybrid Analysis': 'https://hybrid-analysis.com/sample/{ioc}', # requires login
     'MalwareBazaar': 'https://bazaar.abuse.ch/sample/{ioc}',
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?q={ioc}',
     'Kaspersky': 'https://opentip.kaspersky.com/{ioc}/results?tab=lookup',
