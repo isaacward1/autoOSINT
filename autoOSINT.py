@@ -20,7 +20,7 @@ ip_links = {
     'ThreatFox': 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/ip/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
-    'ThreatBook': 'https://threatbook.io/research/{ioc}', ### requires account
+    'ThreatBook': 'https://i.threatbook.io/research/{ioc}', ### requires account
     'Cisco Talos': 'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
     'Shodan': 'https://www.shodan.io/host/{ioc}',
     'Censys': 'https://search.censys.io/hosts/{ioc}',
@@ -41,7 +41,7 @@ domain_links = {
     'ThreatFox': 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/hostname/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/url/{ioc}',
-    'ThreatBook': 'https://threatbook.io/research/{ioc}', ### requires account
+    'ThreatBook': 'https://i.threatbook.io/research/{ioc}', ### requires account
     'Cisco Talos': 'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
     'Shodan': 'https://www.shodan.io/domain/{ioc}',
     'IOC Radar': 'https://socradar.io/labs/app/ioc-radar/{ioc}',
