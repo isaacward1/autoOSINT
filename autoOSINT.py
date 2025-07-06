@@ -7,6 +7,7 @@ import sys
 import time
 import hashlib
 
+ip_defaults = ['VirusTotal', 'AbuseIPDB', 'CentralOps', 'SecureFeed', 'GreyNoise', 'ThreatFox', 'AlienVault OTX', 'Censys', 'IOC Radar', 'Google']
 ip_links = {
     'VirusTotal': 'https://www.virustotal.com/gui/ip-address/{ioc}',
     'AbuseIPDB': 'https://www.abuseipdb.com/check/{ioc}',
@@ -19,18 +20,18 @@ ip_links = {
     'ThreatFox': 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/ip/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
-    'ThreatBook': 'https://threatbook.io/research/{ioc}', # requires login
+    'ThreatBook': 'https://threatbook.io/research/{ioc}', ### requires account
     'Cisco Talos': 'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
     'Shodan': 'https://www.shodan.io/host/{ioc}',
     'Censys': 'https://search.censys.io/hosts/{ioc}',
     'IOC Radar': 'https://socradar.io/labs/app/ioc-radar/{ioc}',
-    'Hybrid Analysis': 'https://www.hybrid-analysis.com/search?query={ioc}', # requires login
+    'Hybrid Analysis': 'https://www.hybrid-analysis.com/search?query={ioc}', ### requires account
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
-    'Google (custom)': 'https://www.google.com/search?q="{ioc}"+site:any.run',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
+domain_defaults = ['VirusTotal', 'CentralOps', 'urlscan.io (scan)', 'SecureFeed', 'ThreatFox', 'AlienVault OTX', 'Hybrid Analysis', 'Any.Run', 'IOC Radar', 'Google']
 domain_links = {
     'VirusTotal': 'https://www.virustotal.com/gui/domain/{ioc}',
     'CentralOps': 'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
@@ -40,36 +41,43 @@ domain_links = {
     'ThreatFox': 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/hostname/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/url/{ioc}',
-    'ThreatBook': 'https://threatbook.io/research/{ioc}', # requires login
+    'ThreatBook': 'https://threatbook.io/research/{ioc}', ### requires account
     'Cisco Talos': 'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
     'Shodan': 'https://www.shodan.io/domain/{ioc}',
     'IOC Radar': 'https://socradar.io/labs/app/ioc-radar/{ioc}',
-    'Hybrid Analysis': 'https://www.hybrid-analysis.com/search?query={ioc}', # requires login
+    'Hybrid Analysis': 'https://www.hybrid-analysis.com/search?query={ioc}', ### requires account
+    'Any.Run': 'https://app.any.run/submissions#domain:{ioc}',
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
-    'Google (custom)': 'https://www.google.com/search?q="{ioc}"+site:any.run',
     'Google': 'https://www.google.com/search?q="{ioc}"'
 }
 
+url_defaults = ['URLHaus', 'VirusTotal', 'AlienVault OTX', 'IBM X-Force', 'urlscan.io (scan)', 'Any.Run']
 url_links = {
     'URLHaus': 'https://urlhaus.abuse.ch/browse.php?search={ioc}',
     'VirusTotal': 'https://www.virustotal.com/gui/url/{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/url/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/url/{ioc}',
+    'urlscan.io (scan)': 'https://urlscan.io/#{ioc}',
+    'Any.Run': 'https://app.any.run/submissions#filehash:{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
+hash_defaults = ['AlienVault OTX', 'Recorded Future Triage', 'VirusTotal', 'Hybrid Analysis', 'Any.Run', 'MalwareBazaar', 'Joe Sandbox', 'Threat.Zone', 'threat.rip', 'Google']
 hash_links = {
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/file/{ioc}',
     'Recorded Future Triage': 'https://tria.ge/s?q={ioc}',
     'VirusTotal': 'https://www.virustotal.com/gui/file/{ioc}',
-    'Hybrid Analysis': 'https://hybrid-analysis.com/sample/{ioc}', # requires login
+    'Hybrid Analysis': 'https://hybrid-analysis.com/sample/{ioc}', ### requires account
+    'Any.Run': 'https://app.any.run/submissions#filehash:{ioc}',
     'MalwareBazaar': 'https://bazaar.abuse.ch/sample/{ioc}',
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?q={ioc}',
-    'Kaspersky': 'https://opentip.kaspersky.com/{ioc}/results?tab=lookup',
+    'Kaspersky': 'https://opentip.kaspersky.com/{ioc}/results',
     'VMRay Threat Feed': 'https://threatfeed.vmray.com/?textSearch={ioc}',
     'Polyswarm': 'https://polyswarm.network/scan/results/file/{ioc}',
     'MalProb': 'https://malprob.io/report/{ioc}',
+    'Threat.Zone': 'https://app.threat.zone/submissions/public-submissions?page=1&jump=50&listOf=date&sort=asc&hash={ioc}',
+    'threat.rip': 'https://threat.rip/file/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
@@ -81,11 +89,12 @@ subs = {
     'hxxps':'https'
 }
 
+scheme_pattern = r"(?:^https?:\/\/)(.+)"
 regex_ioc_patterns = {
-    "ipv4": r"([0-9]{1,3}\.){3}[0-9]{1,3}",
-    "domain": r"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-    "url": r"^https?:\/\/.+$",
-    "hash": r"[a-zA-Z0-9]{64}"
+    "IP": r"([0-9]{1,3}\.){3}[0-9]{1,3}",
+    "Domain": r"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+    "URL": r"^https?:\/\/.+$",
+    "SHA256": r"[a-zA-Z0-9]{64}"
 }
 
 def help():
@@ -130,13 +139,13 @@ def check_valid_ioc(ioc):
 
 def search_ioc(ioc, ioc_type, option=None):
     try:
-        if ioc_type == "ipv4":
+        if ioc_type == "IP":
             first = True
             if option:
                 for i, link in enumerate(ip_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
                 link_values = list(ip_links.values())
 
                 for idx in custom_idx:
@@ -150,9 +159,8 @@ def search_ioc(ioc, ioc_type, option=None):
                     time.sleep(0.25)
 
             else:
-                defaults = ['VirusTotal', 'AbuseIPDB', 'CentralOps | Whois', 'SecureFeed', 'ThreatFox', 'AlienVault OTX', 'Censys', 'IOC Radar', 'Google']
-                for link in defaults:
-                    new_link = ip_links[link].replace("{ioc}", ioc)
+                for source in ip_defaults:
+                    new_link = ip_links[source].replace("{ioc}", ioc)
                     if first:
                         webbrowser.open_new(new_link)
                         first = False
@@ -160,13 +168,13 @@ def search_ioc(ioc, ioc_type, option=None):
                         webbrowser.open_new_tab(new_link)
                     time.sleep(0.25)
 
-        if ioc_type == "domain":
+        if ioc_type == "Domain":
             first = True
             if option:
                 for i, link in enumerate(domain_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
                 link_values = list(domain_links.values())
 
                 for idx in custom_idx:
@@ -180,9 +188,8 @@ def search_ioc(ioc, ioc_type, option=None):
                     time.sleep(0.25)
 
             else:
-                defaults = ['VirusTotal', 'CentralOps | Whois', 'urlscan.io (scan)', 'SecureFeed', 'ThreatFox', 'AlienVault OTX', 'Hybrid Analysis', 'IOC Radar', 'Google']
-                for link in defaults:
-                    new_link = domain_links[link].replace("{ioc}", ioc)
+                for source in domain_defaults:
+                    new_link = domain_links[source].replace("{ioc}", ioc)
                     if first:
                         webbrowser.open_new(new_link)
                         first = False
@@ -190,22 +197,21 @@ def search_ioc(ioc, ioc_type, option=None):
                         webbrowser.open_new_tab(new_link)
                     time.sleep(0.25)
 
-        if ioc_type == "url":
+        if ioc_type == "URL":
             first = True
             if option:
                 for i, link in enumerate(url_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
                 link_values = list(url_links.values())
 
                 for idx in custom_idx:
                     link = link_values[int(idx)-1]
-                    if "VirusTotal".lower() in link:
+                    if ("virustotal" in link) or ("any.run" in link):
                         ioc_hash = hashlib.sha256(ioc.encode()).hexdigest()
                         new_link = link.replace("{ioc}", ioc_hash)
-                    elif "URLHaus".lower() in link:
-                        scheme_pattern = r"(?:^https?:\/\/)(.+)"
+                    elif "urlhaus" in link:
                         ioc2 = re.findall(scheme_pattern, ioc)[0]
                         new_link = link.replace("{ioc}", ioc2)
                     else:
@@ -218,17 +224,15 @@ def search_ioc(ioc, ioc_type, option=None):
                     time.sleep(0.25)
 
             else:
-                defaults = ['URLHaus', 'VirusTotal', 'AlienVault OTX', 'IBM X-Force', 'Google']
-                for link in defaults:
-                    if "VirusTotal" in link:
+                for source in url_defaults:
+                    if source in ("VirusTotal", "Any.Run"):
                         ioc_hash = hashlib.sha256(ioc.encode()).hexdigest()
-                        new_link = url_links[link].replace("{ioc}", ioc_hash)
-                    elif "URLHaus" in link:
-                        scheme_pattern = r"(?:^https?:\/\/)(.+)"
+                        new_link = url_links[source].replace("{ioc}", ioc_hash)
+                    elif source == "URLHaus":
                         ioc2 = re.findall(scheme_pattern, ioc)[0]
-                        new_link = url_links[link].replace("{ioc}", ioc2)
+                        new_link = url_links[source].replace("{ioc}", ioc2)
                     else:
-                        new_link = url_links[link].replace("{ioc}", ioc)
+                        new_link = url_links[source].replace("{ioc}", ioc)
                     if first:
                         webbrowser.open_new(new_link)
                         first = False
@@ -236,13 +240,13 @@ def search_ioc(ioc, ioc_type, option=None):
                         webbrowser.open_new_tab(new_link)
                     time.sleep(0.25)
 
-        if ioc_type == "hash":
+        if ioc_type == "SHA256":
             first = True
             if option:
                 for i, link in enumerate(hash_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
                 link_values = list(hash_links.values())
 
                 for idx in custom_idx:
@@ -256,9 +260,8 @@ def search_ioc(ioc, ioc_type, option=None):
                     time.sleep(0.25)
 
             else:
-                defaults = ['AlienVault OTX', 'Recorded Future Triage', 'VirusTotal', 'Hybrid Analysis', 'MalwareBazaar', 'Joe Sandbox', 'Kaspersky', 'Google']
-                for link in defaults:
-                    new_link = hash_links[link].replace("{ioc}", ioc)
+                for source in hash_defaults:
+                    new_link = hash_links[source].replace("{ioc}", ioc)
                     if first:
                         webbrowser.open_new(new_link)
                         first = False
