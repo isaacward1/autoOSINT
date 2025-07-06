@@ -20,7 +20,7 @@ ip_links = {
     'ThreatFox': 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/ip/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/ip/{ioc}',
-    'ThreatBook': 'https://i.threatbook.io/research/{ioc}', ### requires account
+    'ThreatBook': 'https://threatbook.io/research/{ioc}', ### requires account
     'Cisco Talos': 'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
     'Shodan': 'https://www.shodan.io/host/{ioc}',
     'Censys': 'https://search.censys.io/hosts/{ioc}',
@@ -41,7 +41,7 @@ domain_links = {
     'ThreatFox': 'https://threatfox.abuse.ch/browse.php?search=ioc%3A{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/hostname/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/url/{ioc}',
-    'ThreatBook': 'https://i.threatbook.io/research/{ioc}', ### requires account
+    'ThreatBook': 'https://threatbook.io/research/{ioc}', ### requires account
     'Cisco Talos': 'https://talosintelligence.com/reputation_center/lookup?search={ioc}',
     'Shodan': 'https://www.shodan.io/domain/{ioc}',
     'IOC Radar': 'https://socradar.io/labs/app/ioc-radar/{ioc}',
@@ -99,13 +99,13 @@ regex_ioc_patterns = {
 
 def help():
     print("""
-Syntax:
-      
+syntax:
+
     autoOSINT.py <IOC>
     autoOSINT.py <IOC> [-c | --custom]
     autoOSINT.py [-h | --help]
 
-Options:
+options:
     -h, --help             
         Displays this help message.
 
@@ -115,11 +115,12 @@ Options:
     """)
     sys.exit(0)
 
-def example():
-    print("""   
-Note: Enclose args containing spaces in double quotes.
+def wrong(msg):
+    print(f"""
+error: {msg}
+note: Enclose IOCs containing spaces in double quotes (\"\")   
 
-Examples:
+examples:
 
     autoOSINT.py -h
     autoOSINT.py 31[.]54.251.171 --custom
@@ -269,8 +270,8 @@ def search_ioc(ioc, ioc_type, option=None):
                         webbrowser.open_new_tab(new_link)
                     time.sleep(0.25)
 
-    except Exception as bruh:
-        print(f"Error: {bruh}")
+    except Exception as oops:
+        print(f"error: {oops}")
 
 if __name__ == '__main__':
 
@@ -283,17 +284,16 @@ if __name__ == '__main__':
         (ioc, ioc_type) = check_valid_ioc((sys.argv[1]).strip())
         if ioc:
             search_ioc(ioc, ioc_type)
-        else:
-            example()
+        wrong("Invalid IOC")
 
     elif len(sys.argv) == 3:
         (ioc, ioc_type) = check_valid_ioc((sys.argv[1]).strip())
         option = (sys.argv[2]).strip()
         if option not in ("--custom", "-c"):
-            example()
+            wrong("Invalid option")
         if ioc:
             search_ioc(ioc, ioc_type, option)
         else:
-            example()
+            wrong("Invalid IOC")
     else:
-        example()
+        wrong("Invalid # of arguments")
