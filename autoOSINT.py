@@ -284,7 +284,8 @@ if __name__ == '__main__':
         (ioc, ioc_type) = check_valid_ioc((sys.argv[1]).strip())
         if ioc:
             search_ioc(ioc, ioc_type)
-        wrong("Invalid IOC")
+        else:
+            wrong("Invalid IOC")
 
     elif len(sys.argv) == 3:
         (ioc, ioc_type) = check_valid_ioc((sys.argv[1]).strip())
