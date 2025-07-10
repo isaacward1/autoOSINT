@@ -34,7 +34,7 @@ A silly CLI tool to save a few seconds during triage.<br>
 
 <br>
 
-## Todo
+## To-do
 - open window (os, subprocess)
 - add new sources
    - https://www.filescan.io/scan
