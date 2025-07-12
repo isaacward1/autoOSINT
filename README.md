@@ -33,8 +33,3 @@ A silly CLI tool to save a few seconds during triage.<br>
 - `webbrowser` will attempt to open a fresh browser window first and then new tabs for subsequent links. However, depending on browser settings, a new window may need to be manually opened and focused before running the tool, to prevent cluttering of an already active window.
 
 <br>
-
-## To-do
-- open window (os, subprocess)
-- add new sources
-   - https://www.filescan.io/scan
