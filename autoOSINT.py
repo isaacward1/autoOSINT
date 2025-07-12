@@ -63,7 +63,7 @@ url_links = {
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
-hash_defaults = ['AlienVault OTX', 'Recorded Future Triage', 'VirusTotal', 'Hybrid Analysis', 'Any.Run', 'MalwareBazaar', 'Joe Sandbox', 'Threat.Zone', 'threat.rip', 'Google']
+hash_defaults = ['AlienVault OTX', 'Recorded Future Triage', 'VirusTotal', 'Hybrid Analysis', 'Any.Run', 'MalwareBazaar', 'Joe Sandbox', 'Threat.Zone', 'threat.rip', 'MetaDefender', 'Google']
 hash_links = {
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/file/{ioc}',
     'Recorded Future Triage': 'https://tria.ge/s?q={ioc}',
@@ -78,6 +78,7 @@ hash_links = {
     'MalProb': 'https://malprob.io/report/{ioc}',
     'Threat.Zone': 'https://app.threat.zone/submissions/public-submissions?page=1&jump=50&listOf=date&sort=asc&hash={ioc}',
     'threat.rip': 'https://threat.rip/file/{ioc}',
+    'MetaDefender': 'https://metadefender.com/results/hash/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
