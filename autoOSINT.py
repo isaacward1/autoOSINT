@@ -28,6 +28,8 @@ ip_links = {
     'Hybrid Analysis': 'https://www.hybrid-analysis.com/search?query={ioc}', ### requires account
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?ioc-public-ip={ioc}',
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
+    'Criminal IP': 'https://www.criminalip.io/asset/report/{ioc}',
+    'threatYeti': 'https://threatyeti.com/search?q={ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
@@ -49,6 +51,7 @@ domain_links = {
     'Any.Run': 'https://app.any.run/submissions#domain:{ioc}',
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
+    'threatYeti': 'https://threatyeti.com/search?q={ioc}',
     'Google': 'https://www.google.com/search?q="{ioc}"'
 }
 
