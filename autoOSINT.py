@@ -7,7 +7,7 @@ import sys
 import time
 import hashlib
 
-ip_defaults = ['VirusTotal', 'AbuseIPDB', 'CentralOps', 'SecureFeed', 'GreyNoise', 'ThreatFox', 'AlienVault OTX', 'Censys', 'IOC Radar', 'Google']
+ip_defaults = ['VirusTotal', 'AbuseIPDB', 'CentralOps', 'SecureFeed', 'Netify', 'ThreatFox', 'AlienVault OTX', 'ThreatBook', 'IOC Radar', 'Criminal IP']
 ip_links = {
     'VirusTotal': 'https://www.virustotal.com/gui/ip-address/{ioc}',
     'AbuseIPDB': 'https://www.abuseipdb.com/check/{ioc}',
@@ -33,7 +33,8 @@ ip_links = {
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
-domain_defaults = ['VirusTotal', 'CentralOps', 'urlscan.io (scan)', 'SecureFeed', 'ThreatFox', 'AlienVault OTX', 'Hybrid Analysis', 'Any.Run', 'IOC Radar', 'Google']
+domain_defaults = ['VirusTotal', 'CentralOps', 'urlscan.io (scan)', 'SecureFeed', 
+'ThreatFox', 'AlienVault OTX', 'ThreatBook', 'IOC Radar', 'Hybrid Analysis', 'ANY.RUN', 'Google']
 domain_links = {
     'VirusTotal': 'https://www.virustotal.com/gui/domain/{ioc}',
     'CentralOps': 'https://centralops.net/co/DomainDossier.aspx?addr={ioc}&dom_dns=true&dom_whois=true&net_whois=true',
@@ -48,39 +49,41 @@ domain_links = {
     'Shodan': 'https://www.shodan.io/domain/{ioc}',
     'IOC Radar': 'https://socradar.io/labs/app/ioc-radar/{ioc}',
     'Hybrid Analysis': 'https://www.hybrid-analysis.com/search?query={ioc}', ### requires account
-    'Any.Run': 'https://app.any.run/submissions#domain:{ioc}',
+    'ANY.RUN': 'https://app.any.run/submissions#domain:{ioc}',
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?ioc-domain={ioc}',
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
     'threatYeti': 'https://threatyeti.com/search?q={ioc}',
+    'BuiltWith': 'https://builtwith.com/{ioc}',
     'Google': 'https://www.google.com/search?q="{ioc}"'
 }
 
-url_defaults = ['URLHaus', 'VirusTotal', 'AlienVault OTX', 'IBM X-Force', 'urlscan.io (scan)', 'Any.Run']
+url_defaults = ['URLHaus', 'VirusTotal', 'AlienVault OTX', 'IBM X-Force', 'urlscan.io (scan)', 'ANY.RUN']
 url_links = {
     'URLHaus': 'https://urlhaus.abuse.ch/browse.php?search={ioc}',
     'VirusTotal': 'https://www.virustotal.com/gui/url/{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/url/{ioc}',
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/url/{ioc}',
     'urlscan.io (scan)': 'https://urlscan.io/#{ioc}',
-    'Any.Run': 'https://app.any.run/submissions#filehash:{ioc}',
+    'ANY.RUN': 'https://app.any.run/submissions#filehash:{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
-hash_defaults = ['AlienVault OTX', 'Recorded Future Triage', 'VirusTotal', 'Hybrid Analysis', 'Any.Run', 'MalwareBazaar', 'Joe Sandbox', 'Threat.Zone', 'threat.rip', 'MetaDefender', 'Google']
+hash_defaults = ['VirusTotal', 'MalwareBazaar', 'AlienVault OTX', 'Recorded Future Triage', 'Hybrid Analysis', 
+'ANY.RUN', 'VMRay Threat Feed', 'Threat.Zone', 'Threat.Rip', 'MetaDefender', 'Google']
 hash_links = {
+    'VirusTotal': 'https://www.virustotal.com/gui/file/{ioc}',
+    'MalwareBazaar': 'https://bazaar.abuse.ch/sample/{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/file/{ioc}',
     'Recorded Future Triage': 'https://tria.ge/s?q={ioc}',
-    'VirusTotal': 'https://www.virustotal.com/gui/file/{ioc}',
     'Hybrid Analysis': 'https://hybrid-analysis.com/sample/{ioc}', ### requires account
-    'Any.Run': 'https://app.any.run/submissions#filehash:{ioc}',
-    'MalwareBazaar': 'https://bazaar.abuse.ch/sample/{ioc}',
+    'ANY.RUN': 'https://app.any.run/submissions#filehash:{ioc}',
     'Joe Sandbox': 'https://www.joesandbox.com/analysis/search?q={ioc}',
-    'Kaspersky': 'https://opentip.kaspersky.com/{ioc}/results',
+    'Kaspersky Opentip': 'https://opentip.kaspersky.com/{ioc}/results',
     'VMRay Threat Feed': 'https://threatfeed.vmray.com/?textSearch={ioc}',
     'Polyswarm': 'https://polyswarm.network/scan/results/file/{ioc}',
     'MalProb': 'https://malprob.io/report/{ioc}',
     'Threat.Zone': 'https://app.threat.zone/submissions/public-submissions?page=1&jump=50&listOf=date&sort=asc&hash={ioc}',
-    'threat.rip': 'https://threat.rip/file/{ioc}',
+    'Threat.Rip': 'https://threat.rip/file/{ioc}',
     'MetaDefender': 'https://metadefender.com/results/hash/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
