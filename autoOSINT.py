@@ -30,6 +30,7 @@ ip_links = {
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
     'Criminal IP': 'https://www.criminalip.io/asset/report/{ioc}',
     'threatYeti': 'https://threatyeti.com/search?q={ioc}',
+    'CrowdSec': 'https://app.crowdsec.net/cti/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
