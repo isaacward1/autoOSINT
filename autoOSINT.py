@@ -30,6 +30,7 @@ ip_links = {
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
     'Criminal IP': 'https://www.criminalip.io/asset/report/{ioc}',
     'threatYeti': 'https://threatyeti.com/search?q={ioc}',
+    'Valkyrie Verdict': 'https://verdict.valkyrie.comodo.com/url/ip/result?ip={ioc}',
     'CrowdSec': 'https://app.crowdsec.net/cti/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
@@ -55,6 +56,9 @@ domain_links = {
     'Record Future Triage': 'https://tria.ge/s?q={ioc}',
     'threatYeti': 'https://threatyeti.com/search?q={ioc}',
     'BuiltWith': 'https://builtwith.com/{ioc}',
+    'URLVoid': 'https://www.urlvoid.com/scan/{ioc}/',
+    'Valkyrie Verdict': 'https://verdict.valkyrie.comodo.com/url/domain/result?domain={ioc}',
+    'Wayback Machine':'https://web.archive.org/web/20250000000000*/{ioc}',
     'Google': 'https://www.google.com/search?q="{ioc}"'
 }
 
@@ -66,6 +70,8 @@ url_links = {
     'IBM X-Force': 'https://exchange.xforce.ibmcloud.com/url/{ioc}',
     'urlscan.io (scan)': 'https://urlscan.io/#{ioc}',
     'ANY.RUN': 'https://app.any.run/submissions#filehash:{ioc}',
+    'urlquery (search)': 'https://urlquery.net/search?q={ioc}&view=&type=reports',
+    'Sucuri SiteCheck': 'https://sitecheck.sucuri.net/results/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
@@ -97,12 +103,13 @@ subs = {
     'hxxps':'https'
 }
 
-scheme_pattern = r"(?:^https?:\/\/)(.+)"
-regex_ioc_patterns = {
+regex_patterns = {
     "IP": r"([0-9]{1,3}\.){3}[0-9]{1,3}",
     "Domain": r"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
     "URL": r"^https?:\/\/.+$",
-    "SHA256": r"[a-zA-Z0-9]{64}"
+    "SHA256": r"[a-zA-Z0-9]{64}",
+    "url_scheme": r"(?:https?:\/\/)(.+)",
+    "second_lvl": r"[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$"
 }
 
 def help():
@@ -141,8 +148,8 @@ def check_valid_ioc(ioc):
     for sub in subs.keys():
         ioc = ioc.replace(sub, subs[sub])
 
-    for ioc_type in regex_ioc_patterns.keys():
-        if re.fullmatch(regex_ioc_patterns[ioc_type], ioc):
+    for ioc_type in regex_patterns.keys():
+        if re.fullmatch(regex_patterns[ioc_type], ioc):
             return ioc, ioc_type
     return None, None
 
@@ -188,7 +195,11 @@ def search_ioc(ioc, ioc_type, option=None):
 
                 for idx in custom_idx:
                     link = link_values[int(idx)-1]
-                    new_link = link.replace("{ioc}", ioc)
+                    if ("builtwith" in link) or ("valkyrie" in link) or ("urlvoid" in link):
+                        ioc2 = re.findall(regex_patterns["second_lvl"], ioc)[0]
+                        new_link = link.replace("{ioc}", ioc2)
+                    else:
+                        new_link = link.replace("{ioc}", ioc)
                     if first:
                         webbrowser.open_new(new_link)
                         first = False
@@ -198,7 +209,11 @@ def search_ioc(ioc, ioc_type, option=None):
 
             else:
                 for source in domain_defaults:
-                    new_link = domain_links[source].replace("{ioc}", ioc)
+                    if source in ("BuiltWith", "URLVoid", "Valkyrie Verdict"):
+                        ioc2 = re.findall(regex_patterns["second_lvl"], ioc)[0]
+                        new_link = domain_links[source].replace("{ioc}", ioc2)
+                    else:
+                        new_link = domain_links[source].replace("{ioc}", ioc)
                     if first:
                         webbrowser.open_new(new_link)
                         first = False
@@ -218,11 +233,11 @@ def search_ioc(ioc, ioc_type, option=None):
                 for idx in custom_idx:
                     link = link_values[int(idx)-1]
                     if ("virustotal" in link) or ("any.run" in link):
-                        ioc_hash = hashlib.sha256(ioc.encode()).hexdigest()
-                        new_link = link.replace("{ioc}", ioc_hash)
-                    elif "urlhaus" in link:
-                        ioc2 = re.findall(scheme_pattern, ioc)[0]
+                        ioc2 = hashlib.sha256(ioc.encode()).hexdigest()
                         new_link = link.replace("{ioc}", ioc2)
+                    elif "urlhaus" in link:
+                        ioc3 = re.findall(regex_patterns["url_scheme"], ioc)[0]
+                        new_link = link.replace("{ioc}", ioc3)
                     else:
                         new_link = link.replace("{ioc}", ioc)
                     if first:
@@ -230,15 +245,16 @@ def search_ioc(ioc, ioc_type, option=None):
                         first = False
                     else:
                         webbrowser.open_new_tab(new_link)
+                        pass
                     time.sleep(0.25)
 
             else:
                 for source in url_defaults:
-                    if source in ("VirusTotal", "Any.Run"):
-                        ioc_hash = hashlib.sha256(ioc.encode()).hexdigest()
-                        new_link = url_links[source].replace("{ioc}", ioc_hash)
-                    elif source == "URLHaus":
-                        ioc2 = re.findall(scheme_pattern, ioc)[0]
+                    if source == "URLHaus":
+                        ioc3 = re.findall(regex_patterns["url_scheme"], ioc)[0]
+                        new_link = url_links[source].replace("{ioc}", ioc3)
+                    elif source in ("VirusTotal", "ANY.RUN"):
+                        ioc2 = hashlib.sha256(ioc.encode()).hexdigest()
                         new_link = url_links[source].replace("{ioc}", ioc2)
                     else:
                         new_link = url_links[source].replace("{ioc}", ioc)
