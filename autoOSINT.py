@@ -33,7 +33,6 @@ ip_links = {
     'threatYeti': 'https://threatyeti.com/search?q={ioc}',
     'Valkyrie Verdict': 'https://verdict.valkyrie.comodo.com/url/ip/result?ip={ioc}',
     'CrowdSec': 'https://app.crowdsec.net/cti/{ioc}',
-    'MalwareURL': 'https://www.malwareurl.com/listing.php?domain={ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
@@ -61,7 +60,6 @@ domain_links = {
     'URLVoid': 'https://www.urlvoid.com/scan/{ioc}/',
     'Valkyrie Verdict': 'https://verdict.valkyrie.comodo.com/url/domain/result?domain={ioc}',
     'Wayback Machine':'https://web.archive.org/web/20250000000000*/{ioc}',
-    'MalwareURL': 'https://www.malwareurl.com/listing.php?domain={ioc}',
     'Google': 'https://www.google.com/search?q="{ioc}"'
 }
 
