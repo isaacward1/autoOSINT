@@ -77,7 +77,7 @@ url_links = {
 }
 
 hash_defaults = ['VirusTotal', 'MalwareBazaar', 'AlienVault OTX', 'Recorded Future Triage', 'Hybrid Analysis', 
-'ANY.RUN', 'VMRay Threat Feed', 'Threat.Zone', 'Threat.Rip', 'MetaDefender', 'Google']
+'ANY.RUN', 'Threat.Zone', 'Threat.Rip', 'MetaDefender', 'Google']
 hash_links = {
     'VirusTotal': 'https://www.virustotal.com/gui/file/{ioc}',
     'MalwareBazaar': 'https://bazaar.abuse.ch/sample/{ioc}',
