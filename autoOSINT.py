@@ -33,6 +33,8 @@ ip_links = {
     'threatYeti': 'https://threatyeti.com/search?q={ioc}',
     'Valkyrie Verdict': 'https://verdict.valkyrie.comodo.com/url/ip/result?ip={ioc}',
     'CrowdSec': 'https://app.crowdsec.net/cti/{ioc}',
+    'Maltiverse': 'https://maltiverse.com/ip/{ioc}',
+    'Spur': 'https://spur.us/context/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
@@ -93,6 +95,7 @@ hash_links = {
     'Threat.Zone': 'https://app.threat.zone/submissions/public-submissions?page=1&jump=50&listOf=date&sort=asc&hash={ioc}',
     'Threat.Rip': 'https://threat.rip/file/{ioc}',
     'MetaDefender': 'https://metadefender.com/results/hash/{ioc}',
+    'Intezer': 'https://analyze.intezer.com/files/{ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"'
 }
 
