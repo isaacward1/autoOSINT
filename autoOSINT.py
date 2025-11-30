@@ -40,6 +40,7 @@ ip_links = {
     'CrowdSec': 'https://app.crowdsec.net/cti/{ioc}',
     'Maltiverse': 'https://maltiverse.com/ip/{ioc}',
     'Spur': 'https://spur.us/context/{ioc}',
+    'VulDB': 'https://vuldb.com/?ip.{ioc}',
     'GitHub': 'https://github.com/search?q={ioc}&type=code',
     'grep.app': 'https://grep.app/search?q={ioc}',
     'Google': r'https://www.google.com/search?q="{ioc}"',
