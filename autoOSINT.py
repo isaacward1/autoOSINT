@@ -266,7 +266,7 @@ def search_ioc(ioc, ioc_type, option=None):
                         ioc2 = re.findall(regex_patterns["url_scheme"], ioc)[0]
                         new_link = url_links[source].replace("{ioc}", ioc2)
                     elif source == "urlscan.io (search)":
-                        ioc3 = ioc.replace(':', '\:').replace('/', '\/')
+                        ioc3 = ioc.replace(':', '\\:').replace('/', '\\/')
                         new_link = link.replace("{ioc}", ioc3)
                     elif source in ("VirusTotal", "ANY.RUN"):
                         ioc4 = hashlib.sha256(ioc.encode()).hexdigest()
@@ -292,7 +292,7 @@ def search_ioc(ioc, ioc_type, option=None):
                         ioc2 = re.findall(regex_patterns["url_scheme"], ioc)[0]
                         new_link = link.replace("{ioc}", ioc2)
                     elif url_links['urlscan.io (search)'] == link:
-                        ioc3 = ioc.replace(':', '\:').replace('/', '\/')
+                        ioc3 = ioc.replace(':', '\\:').replace('/', '\\/')
                         new_link = link.replace("{ioc}", ioc3)
                     elif (url_links['VirusTotal'] == link) or (url_links['ANY.RUN'] == link):
                         ioc4 = hashlib.sha256(ioc.encode()).hexdigest()
