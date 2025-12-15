@@ -207,7 +207,7 @@ def search_ioc(ioc, ioc_type, option=None):
                 for i, link in enumerate(ip_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a space-delimited list (ex: 1 4 7 13): ").split())
                 link_values = list(ip_links.values())
 
                 for idx in custom_idx:
@@ -240,7 +240,7 @@ def search_ioc(ioc, ioc_type, option=None):
                 for i, link in enumerate(domain_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a non-spaced comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a space-delimited list (ex: 1 4 7 13): ").split())
                 link_values = list(domain_links.values())
 
                 for idx in custom_idx:
@@ -283,7 +283,7 @@ def search_ioc(ioc, ioc_type, option=None):
                 for i, link in enumerate(url_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a space-delimited list (ex: 1 4 7 13): ").split())
                 link_values = list(url_links.values())
 
                 for idx in custom_idx:
@@ -323,7 +323,7 @@ def search_ioc(ioc, ioc_type, option=None):
                 for i, link in enumerate(hash_links.keys()):
                     print(f'{i+1} - {link}')
                 
-                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a comma-separated list (ex: 1,3,4): ").split(','))
+                custom_idx = set(input(f"\nChoose search sources for {ioc_type}: '{ioc}'\nSpecify as a space-delimited list (ex: 1 4 7 13): ").split())
                 link_values = list(hash_links.values())
 
                 for idx in custom_idx:
