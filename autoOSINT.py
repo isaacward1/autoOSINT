@@ -107,6 +107,7 @@ hash_defaults = ['VirusTotal', 'MalwareBazaar', 'AlienVault OTX', 'Hybrid Analys
 hash_links = {
     'VirusTotal': 'https://www.virustotal.com/gui/file/{ioc}',
     'MalwareBazaar': 'https://bazaar.abuse.ch/sample/{ioc}',
+    'YARAify': 'https://yaraify.abuse.ch/sample/{ioc}',
     'AlienVault OTX': 'https://otx.alienvault.com/indicator/file/{ioc}',
     'Validin': 'https://app.validin.com/detail?type=hash&find={ioc}#tab=reputation', ### requires account
     'Recorded Future Triage': 'https://tria.ge/s?q={ioc}',
