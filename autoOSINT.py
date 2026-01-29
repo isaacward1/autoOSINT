@@ -306,7 +306,6 @@ def search_ioc(ioc, ioc_type, option=None):
                         first = False
                     else:
                         webbrowser.open_new_tab(new_link)
-                        pass
                     time.sleep(0.25)
 
         ### SHA256
